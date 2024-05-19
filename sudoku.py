@@ -30,5 +30,13 @@ class sgrid:
                     return False
         return True
     
+    def check_complete(self):
+        for row in self.grid:
+            if 0 in row:
+                return False
+        return True
+    
 g = sgrid()
 g.check_square(0, 2, 15)
+result = g.check_complete()
+print(result)
