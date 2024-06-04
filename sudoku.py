@@ -34,18 +34,29 @@ class sgrid():
         else:
             return False
 
-    def solve(self):
-        for x in range(9):
-            for y in range(9):
-                if self.grid[x][y] == 0:
-                    print(f'need to replace {x}, {y}')
-                    for n in range(1, 10):
-                        if self.valid(x, y, n):
-                            self.grid[x][y] = n
-                            print(f'placed {n} at {x},{y}')
-                            self.solve()
-                            self.grid[x][y] = 0
-                    return
+    def solve(self, x, y):
+        if x > 8:
+            # we are solved!
+            return True
+        elif y > 8:
+            # last element of row is done, move to next row.
+            return self.solve(x+1, y)
+        # if we don't need to move row/column, check if cell is blank.
+        elif self.grid[x][y] != 0:
+            # try the next cell.
+            return self.solve(x, y+1)
+        else:
+            # try 1-9 and see if they're valid.
+            for i in range(1, 10):
+                if self.valid(x, y, i):
+                    self.grid[x][y] = i;
+                    if self.solve(x, y+1):
+                        # if solve is returning true, we are done!
+                        return True
+                    # if we have to go back, reset it back to 0.
+                    self.grid[x][y] = 0
+            return False
+        
 
     # def check_solved(self):
     #     for x in range(9):
@@ -80,5 +91,5 @@ class sgrid():
     
 g = sgrid()
 g.print_grid()
-g.solve()
+g.solve(0, 0)
 g.print_grid()
