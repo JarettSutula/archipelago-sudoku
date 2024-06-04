@@ -40,7 +40,7 @@ class sgrid():
             return True
         elif y > 8:
             # last element of row is done, move to next row.
-            return self.solve(x+1, y)
+            return self.solve(x+1, 0)
         # if we don't need to move row/column, check if cell is blank.
         elif self.grid[x][y] != 0:
             # try the next cell.
@@ -56,21 +56,6 @@ class sgrid():
                     # if we have to go back, reset it back to 0.
                     self.grid[x][y] = 0
             return False
-        
-
-    # def check_solved(self):
-    #     for x in range(9):
-    #         for y in range(9):
-    #             n = self.grid[x][y]
-    #             row = self.grid[x]
-    #             col = []
-    #             for i in range(len(row)):
-    #                 col.append(self.grid[i][y])
-    #             if self.check_row(row, n) and self.check_col(col, n) and self.check_square(x, y, n):
-    #                 pass
-    #             else:
-    #                 return False
-    #     return True
 
     def print_grid(self):
         print()
