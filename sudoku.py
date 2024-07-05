@@ -61,21 +61,6 @@ class sgrid():
                     # if we have to go back, reset it back to 0.
                     self.grid[x][y] = 0
             return False
-        
-
-    # def check_solved(self):
-    #     for x in range(9):
-    #         for y in range(9):
-    #             n = self.grid[x][y]
-    #             row = self.grid[x]
-    #             col = []
-    #             for i in range(len(row)):
-    #                 col.append(self.grid[i][y])
-    #             if self.check_row(row, n) and self.check_col(col, n) and self.check_square(x, y, n):
-    #                 pass
-    #             else:
-    #                 return False
-    #     return True
 
     def print_grid(self):
         print()
