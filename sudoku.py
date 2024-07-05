@@ -1,3 +1,5 @@
+import time
+
 # starting with sudoku
 class sgrid():
     def __init__(self):
@@ -10,6 +12,9 @@ class sgrid():
                      [0, 7, 0, 0, 8, 6, 0, 4, 1],
                      [9, 0, 6, 5, 4, 2, 3, 7, 8],
                      [0, 4, 2, 1, 3, 0, 0, 6, 0]]
+
+    def update_grid(self, number, x, y):
+        self.grid[x][y] = number
 
     def check_row(self, row, n):
         return n not in self.grid[row]
@@ -40,7 +45,7 @@ class sgrid():
             return True
         elif y > 8:
             # last element of row is done, move to next row.
-            return self.solve(x+1, y)
+            return self.solve(x+1, 0)
         # if we don't need to move row/column, check if cell is blank.
         elif self.grid[x][y] != 0:
             # try the next cell.
@@ -92,4 +97,5 @@ class sgrid():
 g = sgrid()
 g.print_grid()
 g.solve(0, 0)
+# g.update_grid(4, 0, 0)
 g.print_grid()
